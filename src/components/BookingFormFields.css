@@ -4,29 +4,34 @@
     align-items: flex-start;
 }
 
-.formField {
-    margin-bottom: 10px;
+.formGroup {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
+    flex-direction: column;
+    margin-bottom: 60px;
+    width: 100%;
+}   
 
 label {
-    width: 120px;
-    text-align: right;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="tel"],
-textarea {
+.customInput {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
+    padding: 12px;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-top: 5px;
+    margin-top: 10px;
+    font-size: 16px;
 }
+
+.submitButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
