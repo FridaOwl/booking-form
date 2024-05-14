@@ -1,45 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, Form } from 'react-final-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './BookingFormFields.css';
-import { object, string } from 'yup';
-
+import * as yup from 'yup';
 
 interface BookingFormFieldsProps {
     onSubmit: (values: any) => void;
 }
 
-const validationSchema = object().shape({
-    phoneNumber: string()
-    .matches(/^\+?374[0-9]{8}$/, 'Номер телефона должен начинаться с +374 и состоять из 8 цифр после')
-    .required('Введите номер телефона'),
-    comment: string(),
-});
-
 const BookingFormFields: React.FC<BookingFormFieldsProps> = ({ onSubmit }) => {
-    const handleSubmit = async (values: any) => {
-        try {
-            await validationSchema.validate(values, { abortEarly: false });
-            onSubmit(values);
-        } catch (error) {
-            const formattedErrors: { [key: string]: string } = {};
-            if (error instanceof Error && 'inner' in error) {
-                (error as any).inner.forEach((err: any) => {
-                    formattedErrors[err.path] = err.message;
-                });
-            }
-            return formattedErrors;
-        }
-    };
+    const [phoneNumberError, setPhoneNumberError] = useState<string | null>(null);
 
+    const validationSchema = yup.object().shape({
+        phoneNumber: yup
+            .string()
+            .matches(/^\+?374[0-9]{8}$|^(374)[0-9]{8}$/, {
+                message: 'Неверный номер',
+                excludeEmptyString: true,
+            })
+            .required('Введите номер'),
+        comment: yup.string(),
+    });
+
+    const handlePhoneNumberChange = (value: string) => {
+        validationSchema
+            .validate({ phoneNumber: value })
+            .then(() => setPhoneNumberError(null))
+            .catch((error) => {
+                if (error.path === 'phoneNumber') {
+                    setPhoneNumberError(error.errors[0]);
+                }
+            });
+    };
 
     return (
         <Form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit} className="formContainer">
-
                     <div className="formGroup">
                         <label>Дата:</label>
                         <Field name="date">
@@ -70,8 +69,7 @@ const BookingFormFields: React.FC<BookingFormFieldsProps> = ({ onSubmit }) => {
                             <option value="Парикмахерская услуга">Парикмахерская услуга</option>
                             <option value="Косметология">Косметология</option>
                             <option value="Ногтевой сервис">Ногтевой сервис</option>
-                            </Field>
-                        
+                        </Field>
                         <label>Филиал:</label>
                         <Field name="branch" component="select" className="customInput">
                             <option value="">Выберите филиал</option>
@@ -82,7 +80,6 @@ const BookingFormFields: React.FC<BookingFormFieldsProps> = ({ onSubmit }) => {
                         </Field>
                     </div>
 
-
                     <div className="formGroup">
                         <label>Имя:</label>
                         <Field name="firstName" component="input" type="text" className="customInput" />
@@ -90,24 +87,36 @@ const BookingFormFields: React.FC<BookingFormFieldsProps> = ({ onSubmit }) => {
                         <Field name="lastName" component="input" type="text" className="customInput" />
                     </div>
 
-
                     <div className="formGroup">
-                    <label>Номер телефона:</label>
+                        <label>Номер телефона:</label>
                         <Field name="phoneNumber">
                             {({ input, meta }) => (
                                 <div>
-                                    <input {...input} type="text" className="customInput" placeholder="+374XXXXXXXX" />
-                                    {meta.error && meta.touched && <span className="error">{meta.error}</span>}
+                                    <input
+                                        {...input}
+                                        type="text"
+                                        className="customInput"
+                                        placeholder="+374XXXXXXXX"
+                                        onChange={(e) => {
+                                            input.onChange(e);
+                                            handlePhoneNumberChange(e.target.value);
+                                        }}
+                                    />
+                                    {(meta.error || phoneNumberError) && meta.touched && (
+                                        <span className="error">{meta.error || phoneNumberError}</span>
+                                    )}
                                 </div>
                             )}
                         </Field>
                         <label>Комментарий:</label>
+
                         <Field name="comment" component="textarea" className="customInput" />
                     </div>
 
-
                     <div className="formGroup">
-                        <button type="submit" className="submitButton">Заказать</button>
+                        <button type="submit" className="submitButton">
+                            Заказать
+                        </button>
                     </div>
                 </form>
             )}
