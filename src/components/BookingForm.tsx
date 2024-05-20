@@ -1,13 +1,24 @@
 import React from 'react';
-import BookingFormContainer from './BookingFormContainer';
+import { connect } from 'react-redux';
+import { updateFormData } from '../store/actions';
+import BookingFormFields from './BookingFormFields';
 
-const BookingForm: React.FC = () => {
+interface BookingFormProps {
+    updateFormData: (values: any) => void;
+}
+
+const BookingForm: React.FC<BookingFormProps> = ({ updateFormData }) => {
+    const handleSubmit = (values: any) => {
+        updateFormData(values);
+        console.log('Отправка данных:', values);
+    };
+
     return (
         <div>
             <h2>Форма бронирования</h2>
-            <BookingFormContainer />
+            <BookingFormFields onSubmit={handleSubmit} />
         </div>
     );
 };
 
-export default BookingForm;
+export default connect(null, { updateFormData })(BookingForm);
