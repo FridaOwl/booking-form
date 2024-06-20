@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateFormData } from "../store/actions";
+import { updateFormData } from "../../store/actions";
 import BookingFormFields from "./BookingFormFields";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
