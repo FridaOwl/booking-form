@@ -44,7 +44,7 @@ const PhoneNumberField: React.FC<PhoneNumberFieldProps> = ({
             {...input}
             type="text"
             className="customInput"
-            placeholder="+374XXXXXXXX"
+            placeholder="+7XXXXXXXXXX"
             onChange={(event) => {
               input.onChange(event);
               handlePhoneNumberChange(event.target.value);
