@@ -6,9 +6,9 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import BookingForm from "./components/BookingForm";
-import CancellationPage from "./components/CancellationPage";
-import "./App.sass";
+import BookingForm from "./pages/BookingPage/BookingForm";
+import CancellationPage from "./pages/CancellationPage/CancellationPage";
+import "./styles/App.css";
 
 const App: React.FC = () => {
   const { i18n, t } = useTranslation();
