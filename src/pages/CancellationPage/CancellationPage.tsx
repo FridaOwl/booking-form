@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Field, Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
-import "./BookingFormFields.sass";
+import "../../styles/BookingFormFields.css";
 
 const CancellationPage: React.FC = () => {
   const { t } = useTranslation();
@@ -9,8 +9,6 @@ const CancellationPage: React.FC = () => {
 
   const handleSubmit = (values: any) => {
     console.log("Отмена заказа:", values);
-    // Здесь нужно будет подключить БД
-    // Пока что имитируем наличие заказа
     setOrderInfo({
       service: "Пример услуги",
       date: "01/01/2024",
@@ -20,7 +18,6 @@ const CancellationPage: React.FC = () => {
 
   const handleCancelOrder = () => {
     console.log("Заказ отменен");
-    // Здесь нужно будет подключить БД для удаления заказа
     setOrderInfo(null);
   };
 
@@ -58,7 +55,7 @@ const CancellationPage: React.FC = () => {
                     component="input"
                     type="text"
                     className="customInput"
-                    placeholder="+374XXXXXXXX"
+                    placeholder="+7XXXXXXXXXX"
                   />
                 </div>
               </div>

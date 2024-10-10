@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Field, Form } from "react-final-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./BookingFormFields.sass";
+import "../../styles/BookingFormFields.css";
 import * as yup from "yup";
 import PhoneNumberField from "./PhoneNumberField";
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ const BookingFormFields: React.FC<BookingFormFieldsProps> = ({ onSubmit }) => {
   const validationSchema = yup.object().shape({
     phoneNumber: yup
       .string()
-      .matches(/^\+?374[0-9]{8}$|^(374)[0-9]{8}$/, {
+      .matches(/^\+?7[0-9]{8}$|^(7)[0-9]{8}$/, {
         message: t("invalidPhoneNumber"),
         excludeEmptyString: true,
       })
