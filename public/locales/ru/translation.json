@@ -1,5 +1,26 @@
 {
-    "welcome": "Добро пожаловать!",
-    "bookingFormTitle": "Форма бронирования"
-  }
+  "welcome": "Добро пожаловать",
+  "date": "Дата",
+  "time": "Время",
+  "service": "Услуга",
+  "branch": "Филиал",
+  "firstName": "Имя",
+  "lastName": "Фамилия",
+  "phoneNumber": "Номер телефона",
+  "comment": "Комментарий",
+  "selectTime": "Выберите время",
+  "selectService": "Выберите услугу",
+  "selectBranch": "Выберите филиал",
+  "invalidPhoneNumber": "Неверный номер",
+  "enterPhoneNumber": "Введите номер",
+  "submit": "Заказать",
+  "massage": "Массаж",
+  "hairService": "Парикмахерская услуга",
+  "cosmetology": "Косметология",
+  "nailService": "Ногтевой сервис",
+  "branch1": "Филиал 1",
+  "branch2": "Филиал 2",
+  "branch3": "Филиал 3",
+  "branch4": "Филиал 4"
+}
   

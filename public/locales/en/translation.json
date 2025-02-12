@@ -1,5 +1,25 @@
 {
-    "welcome": "Welcome!",
-    "bookingFormTitle": "Booking Form"
-  }
-  
+  "welcome": "Welcome",
+  "date": "Date",
+  "time": "Time",
+  "service": "Service",
+  "branch": "Branch",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phoneNumber": "Phone Number",
+  "comment": "Comment",
+  "selectTime": "Select Time",
+  "selectService": "Select Service",
+  "selectBranch": "Select Branch",
+  "invalidPhoneNumber": "Invalid phone number",
+  "enterPhoneNumber": "Enter phone number",
+  "submit": "Submit",
+  "massage": "Massage",
+  "hairService": "Hair Service",
+  "cosmetology": "Cosmetology",
+  "nailService": "Nail Service",
+  "branch1": "Branch 1",
+  "branch2": "Branch 2",
+  "branch3": "Branch 3",
+  "branch4": "Branch 4"
+}
